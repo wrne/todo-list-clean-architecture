@@ -18,14 +18,20 @@ route.get('/list', async (req: Request, res: Response)=>{
 route.post('/addtask', async (req: Request, res: Response)=>{
 	
 	console.log(`route addtask ${req}`)
-	// res.json(`req success`)	
 	res.json(await tasklistController.addTask(req.body))	
 })
 
 route.post('/finish', async (req: Request, res: Response)=>{
 	
 	console.log(`route finishTask ${req.body.id}`)
-	// res.json(`req success`)	
 	res.json(await tasklistController.finishTask(req.body.id))	
 })
+
+route.post('/delete', async (req: Request, res: Response)=>{
+	
+	console.log(`route deleteTask ${req.body.id}`)
+	res.json(await tasklistController.deleteTask(req.body.id))	
+
+})
+
 export default route

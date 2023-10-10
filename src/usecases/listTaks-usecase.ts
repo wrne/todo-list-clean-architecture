@@ -1,4 +1,4 @@
-import { TaskListData } from "../entities/takslist";
+import { TaskData } from "../entities/takslist";
 import {TaskListRepository} from '../config/repository/tasklist-repository-interface'
 
 export class ListTasksUsecase{
@@ -10,7 +10,7 @@ export class ListTasksUsecase{
 		this.repository = repository		
 
 	}
-	public async performe():Promise<TaskListData[]|undefined>{
+	public async performe():Promise<TaskData[]|undefined>{
 
 		return await this.repository.listAll()
 

@@ -1,7 +1,8 @@
 import { InMemoryTasklistRepository } from "../config/repository/in-memory-tasklist-repository"
 import { TaskListRepository } from "../config/repository/tasklist-repository-interface"
-import { TaskListData } from "../entities/takslist"
-import { AddTasklistUsecase } from "../usecases/addTaks-usecase"
+import { TaskData } from "../entities/takslist"
+import { AddTaskUsecase } from "../usecases/addTaks-usecase"
+import { DeleteTaskUsecase } from "../usecases/deleteTaks-usecase"
 import { FinishTaskUsecase } from "../usecases/finish-task-usecase"
 import { ListTasksUsecase } from "../usecases/listTaks-usecase"
 
@@ -20,19 +21,25 @@ export class TasklistController{
 
 	addTask(body: any){
 
-		const addTasklistUsecase = new AddTasklistUsecase(this.repository)
+		const addTaskUsecase = new AddTaskUsecase(this.repository)
 		const newTask = {
 			dateToFinish: body.dueDate, 
-			task: body.task, 
+			description: body.task, 
 			done: false
-		} as TaskListData
+		} as TaskData
 		
-		return addTasklistUsecase.performe(newTask)
+		return addTaskUsecase.performe(newTask)
 	}
 
 	finishTask(id: string){
 		const finishTaskUseCase = new FinishTaskUsecase(this.repository)
 
 		return finishTaskUseCase.performe(id)
+	}
+
+	deleteTask(id: string){
+		const deleteTaskUseCase = new DeleteTaskUsecase(this.repository)
+
+		return deleteTaskUseCase.performe(id)
 	}
 }

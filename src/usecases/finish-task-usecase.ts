@@ -1,4 +1,4 @@
-import { TaskListData } from "../entities/takslist";
+import { TaskData } from "../entities/takslist";
 import {TaskListRepository} from '../config/repository/tasklist-repository-interface'
 
 export class FinishTaskUsecase{
@@ -12,12 +12,12 @@ export class FinishTaskUsecase{
 	}
 
 	async performe(id: string):Promise<void>{
-		const task: TaskListData|undefined = await this.repository.findById(id)
+		const task: TaskData|undefined = await this.repository.findById(id)
 
 		if (!!task){
 			this.repository.update({
 				...task,
-				done: true }as TaskListData)
+				done: true }as TaskData)
 		}
 
 	}

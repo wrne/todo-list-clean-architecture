@@ -1,13 +1,13 @@
 
-export class TaskListData{
+export class TaskData{
 	id: string
 	dateToFinish: Date
-	task: string
+	description: string
 	done: boolean
 
-	constructor(dateToFinish: Date, task: string, done: boolean){
+	constructor(dateToFinish: Date, description: string, done: boolean){
 		this.dateToFinish = dateToFinish
-		this.task = task
+		this.description = description
 		this.done = done
 		this.id = this.createId()
 	}

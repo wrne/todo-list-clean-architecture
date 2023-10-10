@@ -1,7 +1,7 @@
-import { TaskListData } from "../entities/takslist";
+import { TaskData } from "../entities/takslist";
 import {TaskListRepository} from '../config/repository/tasklist-repository-interface'
 
-export class AddTasklistUsecase{
+export class AddTaskUsecase{
 
 	repository: TaskListRepository
 
@@ -10,9 +10,9 @@ export class AddTasklistUsecase{
 		this.repository = repository		
 
 	}
-	public async performe(tasklist: TaskListData):Promise<string>{
+	public async performe(task: TaskData):Promise<string>{
 
-		const newTask = new TaskListData(tasklist.dateToFinish,tasklist.task, tasklist.done)
+		const newTask = new TaskData(task.dateToFinish,task.description, task.done)
 		await this.repository.insert(newTask)
 		
 		return newTask.id

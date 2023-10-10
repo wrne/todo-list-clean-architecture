@@ -1,10 +1,10 @@
-import { TaskListData } from "../../entities/takslist";
+import { TaskData } from "../../entities/takslist";
 
 export interface TaskListRepository{
-	insert(task: TaskListData):Promise<void>
+	insert(task: TaskData):Promise<void>
 	delete(id: string):Promise<void>
-	update(task: TaskListData): Promise<void>
-	findByDate(date: Date): Promise<TaskListData[]|undefined>
-	findById(id: string): Promise<TaskListData|undefined>
-	listAll():Promise<TaskListData[]|undefined>
+	update(task: TaskData): Promise<void>
+	findByDate(date: Date): Promise<TaskData[]|undefined>
+	findById(id: string): Promise<TaskData|undefined>
+	listAll():Promise<TaskData[]|undefined>
 }

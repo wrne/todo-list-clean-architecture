@@ -1,6 +1,6 @@
 import {TaskListRepository} from '../config/repository/tasklist-repository-interface'
 
-export class AddTasklistUsecase{
+export class DeleteTaskUsecase{
 
 	repository: TaskListRepository
 

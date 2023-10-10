@@ -1,19 +1,19 @@
-import { TaskListData } from "../../entities/takslist";
+import { TaskData } from "../../entities/takslist";
 import { TaskListRepository } from "./tasklist-repository-interface";
 
 export class InMemoryTasklistRepository implements TaskListRepository{
 
-	private tasklist: TaskListData[]
+	private tasklist: TaskData[]
 
-	constructor(tasklistRepo: Array<TaskListData>){
+	constructor(tasklistRepo: Array<TaskData>){
 		this.tasklist = tasklistRepo
 	}
 
-	async listAll(): Promise<TaskListData[] | undefined> {
+	async listAll(): Promise<TaskData[] | undefined> {
 		return this.tasklist
 	}
 	
-	async insert(task: TaskListData): Promise<void> {
+	async insert(task: TaskData): Promise<void> {
 		if (!await this.findById(task.id)){
 			this.tasklist.push(task)
 		}
@@ -23,27 +23,27 @@ export class InMemoryTasklistRepository implements TaskListRepository{
 		this.tasklist = this.tasklist.filter(task => task.id !== id)
 	}
 
-	async update(task: TaskListData): Promise<void> {
+	async update(task: TaskData): Promise<void> {
 		
 		this.tasklist = this.tasklist.map((item)=>{
 			if (item.id === task.id){
 				return {
 					id: task.id,
 					dateToFinish: task.dateToFinish,
-					task: task.task,
+					description: task.description,
 					done: task.done
-				} as TaskListData
+				} as TaskData
 			} else {
 				return item
 			}
 		})
 	}
 
-	async findByDate(date: Date): Promise<TaskListData[]|undefined> {
+	async findByDate(date: Date): Promise<TaskData[]|undefined> {
 		throw new Error("Method not implemented.");
 	}
 	
-	async findById(id: string): Promise<TaskListData|undefined> {
+	async findById(id: string): Promise<TaskData|undefined> {
 		return this.tasklist.find(item => item.id === id)
 	}
 
