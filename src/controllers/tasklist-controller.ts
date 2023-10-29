@@ -1,4 +1,5 @@
-import { InMemoryTasklistRepository } from "../config/repository/in-memory-tasklist-repository"
+import { InMemoryTasklistRepository } from "../config/repository/in-memory/in-memory-tasklist-repository"
+import { MSSQLTasklistRepository } from "../config/repository/ms-sql/mssql-tasklist-repository"
 import { TaskListRepository } from "../config/repository/tasklist-repository-interface"
 import { TaskData } from "../entities/takslist"
 import { AddTaskUsecase } from "../usecases/addTaks-usecase"
@@ -10,7 +11,8 @@ export class TasklistController{
 	repository: TaskListRepository
 	
 	constructor(){
-		this.repository = new InMemoryTasklistRepository([])
+		// this.repository = new InMemoryTasklistRepository([])
+		this.repository = new MSSQLTasklistRepository()
 	}
 
 	listTasks(){

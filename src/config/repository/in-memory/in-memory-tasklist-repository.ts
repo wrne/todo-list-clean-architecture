@@ -1,5 +1,5 @@
-import { TaskData } from "../../entities/takslist";
-import { TaskListRepository } from "./tasklist-repository-interface";
+import { TaskData } from "../../../entities/takslist";
+import { TaskListRepository } from "../tasklist-repository-interface";
 
 export class InMemoryTasklistRepository implements TaskListRepository{
 
